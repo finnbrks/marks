@@ -1,0 +1,309 @@
+/*  all the em measurements start from this setting  
+--------------------------------------------------------------------------------------- */
+html { font-size: 16px; }
+
+
+/*  global styles to reset default values
+--------------------------------------------------------------------------------------- */
+*,
+*:before,
+*:after { box-sizing: border-box; }
+
+body, div, ul, li, img, video, section, figure, figcaption, main, footer, 
+h1, h2, h3, p, a { margin: 0; padding: 0; border: 0; }
+
+body { background: #bbb; background: #eee; }
+
+
+/*  this sets page width: 60em = 960px,  80 = 1280, 90 = 1440
+--------------------------------------------------------------------------------------- */
+.container { max-width: 90rem; }
+.container { margin: 0 auto; background: #eee; }
+
+
+/* example web font styles using IBM Plex Sans
+--------------------------------------------------------------------------------------- */
+@font-face {
+	font-family: Plex;
+	src: url(fonts/IBM-Plex-Sans/IBMPlexSans-Regular.woff2);
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Plex-Bold;
+	src: url(fonts/IBM-Plex-Sans/IBMPlexSans-Bold.woff2);
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Plex-Italic;
+	src: url(fonts/IBM-Plex-Sans/IBMPlexSans-Italic.woff2);
+}
+
+
+body		{ font-family: Plex, Arial, sans-serif; }
+h1, h2, h3	{ font-family: Plex-Bold, Arial, sans-serif; }
+p			{ font-family: Plex, Arial, sans-serif; }
+figcaption	{ font-family: Plex-Italic, Arial, sans-serif; }
+
+
+/*  top navigation section  
+--------------------------------------------------------------------------------------- */
+nav 	{ padding: .5rem 1rem 2rem 1rem; min-height: 2rem; border-bottom: 2px #eee solid; }
+nav h1	{ font-size: 1.5em; margin-bottom: .5em; }
+nav a	{ white-space: nowrap; }
+
+nav ul		{ list-style-type: none; }
+nav ul li	{ display: inline; margin-right: .5rem; }
+
+
+/*  hero image
+--------------------------------------------------------------------------------------- */
+.container > figure { margin: 0 .5rem 2rem .5rem; }
+
+
+/*  main page title after top navigation
+--------------------------------------------------------------------------------------- */
+nav + h2 		{ line-height: 1.15rem; font-size: 1.8rem; margin: 0 .5rem 1rem; }
+
+
+/*  main content: note padding on section
+--------------------------------------------------------------------------------------- */
+section { margin:0; padding: 0 .5rem 1.5rem; }
+
+section h3 { font-size: 1.25em; line-height: 1.5em; }
+
+section figure { margin-bottom: 1rem; }
+
+section figcaption { font-size: .75em; }
+
+section div { margin-top: -0.45rem; margin-top: -0.375rem; }  /* to adjust type against images */
+
+
+/*  media defaults to force image & video width to parent element width
+--------------------------------------------------------------------------------------- */
+img		{ width: 100%; height: auto; } /* max-width stops img element going bigger than its actual size */
+
+video	{ width: 100%; }
+
+.max 	{ max-width: 100%; }
+
+
+/*  default paragraph styling
+--------------------------------------------------------------------------------------- */
+p { margin: 0 0 1rem 0; line-height: 1.375em; max-width: 36em; font-size: 1em; } /* max-width sets line length */
+
+
+/*  footer section
+--------------------------------------------------------------------------------------- */
+footer { font-size:.8em; padding: 1rem .25rem; border-top: 2px #efefef solid; }
+
+footer ul { list-style-type: none; }
+footer li { list-style-type: none; margin: 0 0 .5rem 0; }
+
+footer h3 { margin: 0 0 1em 0; font-size: 1em; }
+
+
+/*  link styling
+--------------------------------------------------------------------------------------- */
+a			{ color: #00e; text-decoration: none; }
+a:visited	{ color: #00e; }
+a:hover		{ color: #e0e; text-decoration: underline; }
+a:active	{ color: #0e0; }
+
+nav a			{ color: #00e; text-decoration: none; }
+nav a:visited	{ color: #00e; }
+nav a:hover		{ color: #e0e; text-decoration: underline; }
+nav a:active	{ color: #0e0; }
+
+
+
+/* 
+IMPORTANT: media query - switches on grid layout if page width is wider than 550px
+--------------------------------------------------------------------------------------- */
+@media (min-width: 550px) { 
+
+
+/*  IMPORTANT: min-width:80em rule will stop the container from resizing  
+--------------------------------------------------------------------------------------- */
+	.container { min-width: 60rem; min-width: 0; }
+
+	.force-height { min-height: 100vh; }
+
+
+/*  top navigation grid
+--------------------------------------------------------------------------------------- */	
+	nav {
+		display: grid; 
+		grid-template-columns: 1fr auto;
+		background: #eee;
+		border-bottom: 0 #eee none;
+	}
+
+	nav ul { margin-top: .48rem; margin-top: .4rem; }
+
+
+/*  main page title after top navigation
+--------------------------------------------------------------------------------------- */
+	.container > h2 { line-height: 1.15em; font-size: 1.8em; margin: 0 auto 1em; text-align: center; }
+
+
+/*  hero image
+--------------------------------------------------------------------------------------- */
+	nav + h2 + figure { margin: 0 0 2rem 0; }
+
+
+/*  section 12 column grid
+--------------------------------------------------------------------------------------- */
+	xsection  { 
+		display: grid; 
+		grid-template-columns: repeat(12, 1fr);
+		grid-template-rows: minmax(2.5rem, auto);
+		grid-column-gap: 1.5rem;
+		grid-row-gap: 0.625rem;    /*  .625% of 16 = 10, 0.625em = 10px ...  */
+		grid-row-gap: 0;
+		grid-template-areas:
+		"hd hd hd hd hd hd hd hd hd hd hd hd"
+		"fg fg fg fg dv dv dv dv dv dv dv dv";
+	}
+
+	section h3		{ grid-area: hd; }
+	section figure	{ grid-area: fg; }
+	section div		{ grid-area: dv; }
+
+
+/*  simple 3 column grid
+--------------------------------------------------------------------------------------- */
+	section {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto;
+		grid-column-gap: 1.5rem;  
+		grid-row-gap: 0;
+		grid-template-areas:
+		"hd hd hd"
+		"fg dv dv";
+	}
+
+	section h3		{ grid-area: hd; }
+	section figure	{ grid-area: fg; }
+	section div		{ grid-area: dv; }
+
+
+/*  default section styles
+--------------------------------------------------------------------------------------- */
+	section { padding: 0 .5rem 2rem; }
+
+	section figure { margin: 0; }
+
+	section h3,
+	.left h3, 
+	.right h3 { margin-bottom: .5em; }
+
+
+/*  custom section template areas
+--------------------------------------------------------------------------------------- */
+	section.about {
+	display: grid;
+	grid-template-columns: minmax(15rem, 1fr) 1fr 1fr;
+	grid-template-areas:
+		"fg dv dv";
+	}
+
+
+/*  section.video grid
+--------------------------------------------------------------------------------------- */	
+	section.video  {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		grid-column-gap: 0.5rem;   /*  .625% of 16 = 10, 0.625em = 10px ...  */
+		grid-row-gap: 0;
+		background: transparent;
+		grid-template-areas:
+		"v1 v1 v1 v1"
+		"t2 t2 t2 t2";
+	}
+
+/*  mapping section video grid template areas to section elements
+--------------------------------------------------------------------------------------- */	
+	section.video figure	{ grid-area: v1; }
+	section.video div		{ grid-area: t2; }
+
+	section.video figure	{ padding:0; }
+	section.video div		{ background:#ff0; background: transparent; }
+	section.video p			{ max-width:32rem; color: #777; }
+	
+	section.video h3		{ padding-top: 1rem; }
+
+
+/*  home page auto grid
+--------------------------------------------------------------------------------------- */		
+section.home {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 1rem;
+	grid-row-gap: 1rem;
+	grid-template-areas:
+	"h1 h1 h1"
+	"h2 h3 h4";
+}
+
+section.home { padding: 0 .5rem 2rem; }
+
+section.home figure.one   { grid-area: h1; }
+section.home figure.two   { grid-area: h2; }
+section.home figure.three { grid-area: h3; }
+section.home figure.four  { grid-area: h4; }
+
+
+
+/*  projects page auto grid
+--------------------------------------------------------------------------------------- */		
+section.projects {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+	grid-column-gap: 1.5rem;  
+	grid-row-gap: 1rem;
+	grid-template-areas:
+	"f1 f2"
+	"f3 f4";
+}
+
+.projects figure.one   { grid-area: f1; }
+.projects figure.two   { grid-area: f2; }
+.projects figure.three { grid-area: f3; }
+.projects figure.four  { grid-area: f4; }
+
+
+/*  footer grid  
+--------------------------------------------------------------------------------------- */	
+	footer {
+		display: grid; 
+		grid-template-columns: 1fr auto;
+		grid-template-rows: repeat(minmax(3rem, auto));
+		grid-gap: 0;
+		background: #444; color: #ddd;
+		border-top: 0 #eee none;
+		margin-top: 4rem;
+		padding-top: 1rem;
+		padding-left: 1rem;
+	}
+
+	footer h3			{ margin: 0; }
+	footer ul 			{ padding-right: 1rem; }
+	footer li 			{ display: inline; margin-left: .5rem; }
+	footer li a 		{ background: #fff; padding: .25em .25em; border-radius: .25em; font-weight: bold; }
+	footer li a:hover	{ background: #000; }
+
+
+} /* end 550px media query */
+
+
+
+/*  for big screens - currently just for testing
+--------------------------------------------------------------------------------------- */
+@media (min-width: 18000px) {
+	html { font-size: 24px; }
+}

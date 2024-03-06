@@ -1,0 +1,220 @@
+/*  CSS  variables & CSS calc
+
+I can use these values across the rest of my CSS
+so I can have one location to define colours
+and other attributes  
+--------------------------------------------------------------------------------------- */
+body,
+div.container,
+nav { background: var(--page-bg); }
+
+
+:root {
+
+	--my-grey: #aaa;
+	--my-orange: #fb0;
+	--my-orange-colour: #f7f7f7;
+
+	--my-col-gap: calc(1.6rem + 1cqi);
+
+	--my-intro-size: clamp( 1.25rem, 1.8rem + 1cqi, 3rem);
+
+
+	--top-nav-h1: clamp(1.37rem, 1.21rem + 0.8vw, 1.78rem);
+	--top-nav-li: clamp(1.09rem, 1rem + 0.47vw, 1.33rem);
+
+/* note this uses vw as its full width 
+	 --size-top-heading: 
+*/
+	--size-top-heading: clamp(2.14rem, 2.125rem + 1.99vw, 4.5rem);
+
+	--my-half-size: clamp( 0.675rem, 0.7rem + 1cqi, 1.5rem);
+	
+	--pull-quote: clamp(1.71rem, 1.45rem + 1.29vw, 2.37rem);
+
+	--soft-text: #222;
+
+	--page-bg: #fcfcf5;
+
+	--my-blur: blur(2rem);
+
+} /* end of root */
+
+
+/*  top navigation section
+--------------------------------------------------------------------------------------- */
+nav h1	  { font-size: var( --top-nav-h1 ); }
+
+nav ul li { font-size: var( --top-nav-li ); }
+
+
+/* 
+IMPORTANT: media query - switches on grid layout if page width is wider than 768px
+--------------------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+
+
+/*  main page title after top navigation
+--------------------------------------------------------------------------------------- */
+	.container > h2 { font-size: var( --size-top-heading ); }
+
+
+/*  body copy colour
+--------------------------------------------------------------------------------------- */	
+	div.container div p,
+	div.container div h3,
+	div.container h3 { color: var( --soft-text ); }
+
+
+/* intro pull quote
+--------------------------------------------------------------------------------------- */
+	.intro { 
+		padding: 4.5rem 4rem 4rem; 
+		background: var( --my-orange ); /* using CSS variable */
+		border-radius: 3rem;
+	}
+
+/* intro pull quote blur filter example
+https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+transform: translate3d(0, 0, 0); - is a hack to fix glitch with Safari
+--------------------------------------------------------------------------------------- */	
+	.intro		  { filter: blur(2rem); transform: translate3d(0, 0, 0); }
+	.intro:hover  { filter: blur(0); transform: translate3d(0, 0, 0); }
+	.intro:active { filter: blur(20rem); transform: translate3d(0, 0, 0); }
+
+/*  using CSS container queries to dynamically scale font size based on container size
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries
+--------------------------------------------------------------------------------------- */
+	section.intro div {
+		container-type: inline-size;
+	}
+
+	section.intro div h3,
+	section.intro div p { font-size: calc(0.9rem + 2.5cqi); }  /* font size based on container width */
+	section.intro div p { margin-bottom: 0; }
+
+
+/* section pull quote
+--------------------------------------------------------------------------------------- */
+	.pull p { font-size: var( --pull-quote ); color: var( --my-orange-colour ) !important; }
+
+
+/* out of background
+--------------------------------------------------------------------------------------- */
+	.orange {
+		background: var( --my-orange );
+	}
+
+	section.two-right { grid-template-columns: 1fr minmax(18rem, 1fr); }
+
+
+/* half
+--------------------------------------------------------------------------------------- */
+	section.half figcaption div p { font-size:var( --my-half-size ); }
+
+	section.half figure figcaption h3 { font-size:var( --my-half-size ); }
+
+
+/* use of container values
+--------------------------------------------------------------------------------------- */	
+	section.half figure {
+		container-type: inline-size;
+	}
+
+	section.half figcaption { 
+		padding-right: calc(0.8rem + 2cqi);
+		padding-left: calc(0.8rem + 2cqi); 
+	}
+
+}
+
+/* full width with text on image
+use of css filter
+https://developer.mozilla.org/en-US/docs/Web/CSS/filter
++ use of z-index to order stacking of elements
+--------------------------------------------------------------------------------------- */
+	section.full {
+		padding: 0;
+		background: #000;
+		border-radius: 1rem;
+		overflow: hidden;
+	}
+
+	section.full:active { border-radius: 3rem; }
+
+	section.full figure {
+		grid-template-areas:
+		"im";
+	}
+
+	section.full figure {
+		container-type: inline-size;
+	}
+	
+	section.full:hover { background: #ff0; }
+	section.full:active { background: #fff; }
+	section.full figure { overflow: visible; }
+	section.full figure img { opacity: 0.9; filter: grayscale(100%); z-index: 0;  }
+	section.full figure:hover img { opacity: 0.75; filter: grayscale(10%); }
+	section.full figure:active img { opacity: 1; filter: grayscale(0%); }
+	section.full figure:hover figcaption h3 { opacity: 0.8; }
+	section.full figure:active figcaption h3 { opacity: 1; }
+
+	section.full figure figcaption { grid-area: im; place-self: center; z-index: 100; }
+	section.full figcaption h3 { font-size: 4rem; padding-top: 0; color: #f7f7f7; width: 100%; }
+
+	section.full figure figcaption svg { width: 100cqi; padding: 2rem; }
+
+/* CSS animation of SVG path elements fill (colour) setting
+https://codepen.io/mark-aub/pen/JjzgGEo/91fe62ef5f447c5496ece4bafabafc49
+--------------------------------------------------------------------------------------- */
+
+path {
+	animation-name: col-1;
+	animation-duration: 6000ms;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(1, end);
+}
+
+path:nth-child(1) { fill: hsl( 0deg 100% 50%); }
+
+path:nth-child(2) {
+	fill: hsl( 60deg 100% 50%);
+	animation-name: col-2;
+	animation-delay: 500ms;
+}
+
+path:nth-child(3) {
+	fill: hsl( 120deg 100% 50%);
+	animation-name: col-3;
+	animation-delay: 1000ms;
+}
+
+path:nth-child(4) {
+	fill: hsl( 180deg 100% 50%);
+	animation-name: col-4;
+	animation-delay: 1500ms;
+}
+
+path:nth-child(5) {
+	fill: hsl( 240deg 100% 50%);
+	animation-name: col-5;
+	animation-delay: 2000ms;
+}
+
+path:nth-child(6) {
+	fill: hsl( 300deg 100% 50%);
+	animation-name: col-6;
+	animation-delay: 2500ms;
+}
+
+@keyframes col-1 { 50% { fill: hsl( calc( 0deg + 180deg ) 100% 50%); } }
+@keyframes col-2 { 50% { fill: hsl( calc( 60deg + 180deg ) 100% 50%); } }
+@keyframes col-3 { 50% { fill: hsl( calc( 120deg + 180deg ) 100% 50%); } }
+@keyframes col-4 { 50% { fill: hsl( calc( 180deg + 180deg ) 100% 50%); } }
+@keyframes col-5 { 50% { fill: hsl( calc( 240deg + 180deg ) 100% 50%); } }
+@keyframes col-6 { 50% { fill: hsl( calc( 300deg + 180deg ) 100% 50%); } }
+
+
+

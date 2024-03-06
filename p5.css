@@ -1,0 +1,24 @@
+/*  p5 CSS
+--------------------------------------------------------------------------------------- */
+main {
+  container-type: inline-size;
+}
+
+main img { display: none; } /* hide SVG poster image */
+
+.container main nav { padding-left: 1cqi; padding-right: 1cqi; }
+
+main { 
+display: grid;
+grid-template-rows: 480px; /* adjust this */
+grid-gap: 0; grid-row-gap: 0;
+grid-template-areas: 
+"aa";
+}
+
+main div#p5 { z-index: 0; background: transparent; grid-column: 1; grid-row: 1 / span 5; }
+
+main { margin-bottom: 4rem; }
+
+main p, 
+main canvas { justify-self: center; }

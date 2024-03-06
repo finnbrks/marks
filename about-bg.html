@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Your Name Here | About</title>
+	<link href="style.css" rel="stylesheet">
+	<style>
+	
+	@font-face {
+    	font-family: Plex-Var;
+    	src: url(fonts/IBM-Plex-Sans-Variable/IBMPlexSansVar-Roman.woff2);
+    	font-weight: 100 700;
+    	font-stretch: 85% 100%;
+	}
+	
+	body
+	{
+		background-color: #f00;
+		background-image: url(image/web-portfolio-about-960.jpg);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	
+	nav { background-color: transparent; background-image: url(image/sml-y.png); } 
+	
+	nav:hover { background-image: url(image/big-y.png); }
+	
+	nav li a { background:red; padding: .2rem 1.5rem; border-radius: .75rem;}
+	nav li a:hover { color: #fff; background:#00f; text-decoration: none; }
+	
+	.container { background-color: transparent; }
+	
+	nav + h2 { font-family: Plex-Var; font-weight: 100; font-size: 12em !important; 
+		line-height: 1em !important; margin:0 !important; color:#ff0; 
+	}
+	
+	section figure img { filter: grayscale(100%); }
+	section figure img:hover { filter: grayscale(0) invert(100%); }
+	
+	.fix-bg-image { background-attachment: fixed; }
+	
+	 section div { background-color: rgba(0,0,0, 0.5); place-self: start; padding:1rem; border-radius: 1rem; }
+
+	section div p { color: #ff0; font-size:2rem; font-family: Plex-Var; font-weight: 200; font-stretch: 85%; }
+	div p:nth-of-type(1) { font-weight: 500; font-stretch: 100%; }
+	
+	section div { filter: blur(.25rem); }
+	section div:hover { filter: blur(.025rem); }
+	section div:active { filter: blur(1rem); }
+
+	
+	</style>
+</head>
+<body>
+
+<div class="container">
+
+
+<nav>
+	<h1><a href="index.html">Your Name Here</a></h1> 
+	<ul>
+		<li><a href="projects.html">Projects</a></li>
+		<li><a href="about.html">About</a></li>
+		<li><a href="contact.html">Contact</a></li>
+	</ul>
+</nav> <!-- end nav -->
+
+
+<h2>About</h2>
+
+
+<section>
+
+	<figure>
+		<img alt="Your Name Here" src="image/web-portfolio-about-960.jpg">
+		<figcaption>Image Credit</figcaption>
+	</figure>
+	
+	<div>
+		<p>This blurb about you is an Assessment Component. Pellentesque non tristique ipsum, non cursus risus. Suspendisse vitae nisl sodales dolor ultrices ex. Ut  purus mollis, lorem cursus. In eu malesuada nulla. Fusce mattis feugiat mollis. Curabitur dignissim tellus nibh, a consequat orci mollis non. Maecenas eu consectetur sapien.</p>
+		<p>Quisque lacinia ante non malesuada ultricies. Donec nunc ipsum, auctor a ipsum vel, ullamcorper condimentum urna. Integer ultrices, lacus eget lacinia malesuada, justo sem lobortis ligula, id pharetra magna felis quis felis. Morbi interdum leo quis magna efficitur, eu feugiat ex placerat.</p>
+	</div>
+
+</section> <!-- end section -->
+
+
+
+</div> <!-- end of container -->
+
+</body>
+</html>

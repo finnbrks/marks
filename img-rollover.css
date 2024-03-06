@@ -1,0 +1,49 @@
+/*  
+individual image text block rollover
+--------------------------------------------------------------------------------------- */	
+
+figure.my-rollover img { 
+display:block; margin: 0; padding: 0; border: 0;
+}
+
+figure.my-rollover a,
+figure.my-rollover a:hover {  text-decoration: none;  }
+
+
+figure.my-rollover, figure.my-rollover a { background: transparent; }
+figure.my-rollover { max-width: 100%; }
+figure.my-rollover a { width: 100%; height: auto; }
+figure.my-rollover figcaption { padding: .5em .75em; z-index:100; }
+
+figure.my-rollover {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-areas:
+	"im";
+}
+
+figure.my-rollover a, 
+figure.my-rollover img,
+figure.my-rollover figcaption { grid-area: im; }
+
+figure.my-rollover figcaption { place-self: center; }
+figure.my-rollover h3 { margin-bottom: 0; }
+
+figure.my-rollover figcaption { display: grid; grid-template-areas: "all"; }
+figure.my-rollover figcaption h3 { grid-area: all; }
+
+
+figure.my-rollover figcaption { opacity: 0; }
+figure.my-rollover figcaption h3 { font-size:3em; text-align: center; }
+
+figure.my-rollover { border-radius: 3em 0; overflow: hidden; }
+figure.my-rollover:hover { border-radius: 0 3em; }
+figure.my-rollover:hover img { opacity: 0.8; }
+
+figure.my-rollover:active a { background: rgba(0,0,255,.9); }
+figure.my-rollover:active img { opacity: 0; }
+
+figure.my-rollover:hover figcaption { opacity: 1; color: #ffe; }
+figure.my-rollover:active figcaption { color: #eed; }
+figure.my-rollover:active { background: red; border-radius: 3em; }
+

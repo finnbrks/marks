@@ -1,0 +1,136 @@
+/*  
+image text title block rollover
+--------------------------------------------------------------------------------------- */	
+
+/*  
+quick example default styles for mobile view - needs more work
+--------------------------------------------------------------------------------------- */	
+figure.roll {
+	display: grid;
+	grid-template-rows: auto;
+	grid-row-gap:0;
+	grid-template-areas:
+	"im";
+}
+
+figure.roll a { grid-area: im; }
+figure.roll figcaption { grid-area: im; }
+figure.roll figcaption { 
+	display: grid; padding: 1rem; background: yellow; 
+	text-align: center; 
+	}
+figure.roll figcaption h3 { place-self: center; line-height: 1.25em; }
+
+
+figure.roll a {
+	display: grid; 
+	grid-template-rows: auto;
+	grid-template-areas: "all";
+}
+
+figure.roll a img { grid-area: all; }
+
+figure.roll a figcaption { opacity: 1; }
+figure.roll a img { opacity: 0; } 
+figure.roll a img.hide { opacity: 1; } 
+
+
+/* 
+IMPORTANT: media query - switches on grid layout if page width is wider than 768px
+--------------------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+
+section.projects { 
+grid-template-columns: 1fr 1fr;
+grid-template-areas: 
+"f1 f2"
+"f3 f4";
+}
+
+section.projects figure.roll img { display:block; }
+section.projects figure.roll img,
+section.projects figure.roll a,
+section.projects figure.roll figcaption { margin: 0; padding: 0; border: 0; }
+
+
+.projects a.one   { grid-area: f1; }
+.projects a.two   { grid-area: f2; }
+.projects a.three { grid-area: f3; }
+.projects a.four  { grid-area: f4; }
+
+.projects a,
+.projects a:hover { text-decoration: none;  }
+
+figure.roll, figure.roll a { background: transparent; overflow: hidden; }
+figure.roll { max-width: 100%; }
+figure.roll a { width: 100%; } 
+figure.roll figcaption { padding: .5rem 1rem 0; display: block; }
+
+/*  using CSS container queries to dynamically scale font size based on container size
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries
+--------------------------------------------------------------------------------------- */
+figure.roll {
+	container-type: inline-size;
+}
+
+figure.roll {
+	display: grid;
+	grid-template-rows: 35% 65%;
+	grid-row-gap:0;
+	grid-template-areas:
+		"im"
+		"im";
+}
+
+figure.roll a { grid-area: im; }
+
+figure.roll a {
+	display: grid; 
+	grid-template-rows: auto;
+	grid-template-areas: "all";
+}
+
+figure.roll a img { grid-area: all; }
+figure.roll * { grid-column: 1; }
+figure.roll figcaption { grid-row: 2; }
+
+figure.roll figcaption { background: rgba(255, 0, 0, .8); opacity: 0; }
+figure.roll a img { opacity: 1; }
+figure.roll a img.hide { opacity: 0; }
+
+
+figure.roll { border-radius: 3rem 0 0 0; overflow: hidden; }
+figure.roll:hover { border-radius: 0 3rem 0 0; }
+
+figure.roll:hover { overflow: hidden; }
+
+figure.roll:hover img { opacity: 0; }
+figure.roll:hover figcaption,
+figure.roll:hover img.hide { opacity: 1; }
+figure.roll:active figcaption { background: rgba(0, 0, 255, .9); color: #eed; }
+
+/*  
+caption text detail
+--------------------------------------------------------------------------------------- */	
+figure.roll figcaption h3,
+figure.roll figcaption p { font-size: 1rem;  margin-bottom; 0; text-align: left;}
+figure.roll h3 { margin-bottom: 0; }
+	
+figure.roll figcaption { padding-top: calc(0.2rem + 5cqi); }
+
+figure.roll figcaption h3,
+figure.roll figcaption p { font-size: 6.5cqi; }  /* font size based on container width */
+figure.roll figcaption h3 { line-height: 1; padding: 1rem 1rem 0; }
+figure.roll figcaption p {  padding: 0 1rem; }
+	
+} /* end 768 media query */
+
+
+/*  
+if text too small
+--------------------------------------------------------------------------------------- */	
+@media (max-width: 1000px) {
+	figure.roll figcaption h3 { font-size: 12cqi;  }
+	figure.roll figcaption p { color: yellow !important; opacity: 0; }
+}
+

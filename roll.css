@@ -1,0 +1,45 @@
+/*  
+image text block rollover
+--------------------------------------------------------------------------------------- */	
+
+section.projects figure.roll img { 
+display:block; margin: 0; padding: 0; border: 0;
+}
+
+.projects a.one   { grid-area: f1; }
+.projects a.two   { grid-area: f2; }
+.projects a.three { grid-area: f3; }
+.projects a.four  { grid-area: f4; }
+
+.projects a,
+.projects a:hover {  text-decoration: none;  }
+
+
+figure.roll, figure.roll a { background: transparent; }
+figure.roll { max-width: 100%; transition:  0.3s ease; }
+figure.roll a { width: 100%; height: auto; }
+figure.roll figcaption { padding: .5em .75em; z-index:100; }
+
+figure.roll {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-areas:
+	"im";
+}
+
+figure.roll a, figure.roll figcaption { grid-area: im; }
+figure.roll figcaption { place-self: center; }
+figure.roll h3 { margin-bottom: .5em; margin-bottom: 0; }
+
+figure.roll figcaption { font-size:2em; text-align: center; opacity: 0; }
+
+figure.roll { border-radius: 3em 0; overflow: hidden; }
+figure.roll:hover { border-radius: 0 3em; }
+figure.roll:hover img { opacity: 0.8; }
+
+figure.roll:active a { background: rgba(0,0,255,.9); border-radius: 3em; }
+figure.roll:active img { opacity: 0; }
+
+figure.roll:hover figcaption { opacity: 1; color: #ffe; }
+figure.roll:active figcaption { color: #eed; }
+
